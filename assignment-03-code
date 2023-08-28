@@ -1,0 +1,48 @@
+class Employee:
+    def __init__(self, emp_id, name, age, salary):
+        self.emp_id = emp_id
+        self.name = name
+        self.age = age
+        self.salary = salary
+
+class EmployeeDatabase:
+    def __init__(self, employees):
+        self.employees = employees
+
+    def print_sorted_data(self, sort_option):
+        if sort_option == 1:
+            sorted_employees = sorted(self.employees, key=lambda emp: emp.age)
+        elif sort_option == 2:
+            sorted_employees = sorted(self.employees, key=lambda emp: emp.name)
+        elif sort_option == 3:
+            sorted_employees = sorted(self.employees, key=lambda emp: emp.salary)
+        else:
+            print("Invalid sort option")
+            return
+
+        print("{:<10} {:<10} {:<5} {:<10}".format("Emp ID", "Name", "Age", "Salary"))
+        print("="*40)
+        for emp in sorted_employees:
+            print("{:<10} {:<10} {:<5} {:<10}".format(emp.emp_id, emp.name, emp.age, emp.salary))
+
+# Creating employee objects
+employees = [
+    Employee("161E90", "Raman", 41, 56000),
+    Employee("161F91", "Himadri", 38, 67500),
+    Employee("161F99", "Jaya", 51, 82100),
+    Employee("171E20", "Tejas", 30, 55000),
+    Employee("171G30", "Ajay", 45, 44000)
+]
+
+# Creating employee database object
+employee_db = EmployeeDatabase(employees)
+
+# Taking user input for sorting option
+print("Select sorting option:")
+print("1. Age")
+print("2. Name")
+print("3. Salary")
+sort_option = int(input("Enter your choice: "))
+
+# Printing sorted data
+employee_db.print_sorted_data(sort_option)
